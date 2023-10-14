@@ -3,7 +3,6 @@ package fiap.com.programacao.demo.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fiap.com.programacao.demo.Model.Produto;
@@ -27,14 +26,9 @@ public class ProdutoService {
             e.printStackTrace();
         }
 
-        // Procurar o produto na lista pelo ID
-        for (Produto produto : produtos) {
-            if (produto.getId().equals(id)) {
-                return produto;
-            }
-        }
-
-        // Se o produto não for encontrado, retornar null
-        return null;
+        return produtos.stream()
+                .filter(produto -> produto.getId().equals(id))
+                .findFirst()
+                .orElse(null);
     }
 }
