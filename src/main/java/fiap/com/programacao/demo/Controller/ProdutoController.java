@@ -23,7 +23,7 @@ public class ProdutoController {
      * @param id
      * @return
      */
-    @GetMapping("/produtos/{id}")
+    @GetMapping("/produto/{id}")
     public ResponseEntity<Produto> getProduto(@PathVariable Long id) {
         Produto produto = produtoService.buscarPorIdBloqueante(id);
         if (produto != null) {
