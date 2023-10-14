@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fiap.com.programacao.demo.Model.Produto;
 import fiap.com.programacao.demo.Service.ProdutoService;
+import reactor.core.publisher.Mono;
 
 @RestController
 public class ProdutoController {
@@ -23,13 +24,13 @@ public class ProdutoController {
      * @param id
      * @return
      */
-    @GetMapping("/produtos/{id}")
-    public ResponseEntity<Produto> getProduto(@PathVariable Long id) {
+    @GetMapping("/produto/{id}")
+    public Mono<ResponseEntity<Produto>> getProduto(@PathVariable Long id) {
         Produto produto = produtoService.buscarPorIdBloqueante(id);
         if (produto != null) {
-            return ResponseEntity.ok(produto);
+            return Mono.just(ResponseEntity.ok(produto));
         } else {
-            return ResponseEntity.notFound().build();
+            return Mono.just(ResponseEntity.notFound().build());
         }
     }
 }

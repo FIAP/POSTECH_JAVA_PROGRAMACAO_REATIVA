@@ -21,6 +21,7 @@ public class ProdutoService {
 
     public Produto buscarPorIdBloqueante(Long id) {
         try {
+            if(id == 1)  
             Thread.sleep(3000); // Simulando uma operação demorada de consulta ao banco de dados
         } catch (InterruptedException e) {
             e.printStackTrace();
